@@ -1,0 +1,141 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top",
+    "position": "top",
+    "height": 36,
+    "spacing": 4,
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "cpu",
+        "memory",
+        "temperature",
+        "disk",
+        "network",
+        "pulseaudio",
+        "backlight",
+        "custom/kbd_backlight",
+        "power-profiles-daemon",
+        "battery"
+    ],
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "format": "{name}",
+        "format-icons": {
+            "urgent": "",
+            "active": "",
+            "default": ""
+        }
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-bluetooth": "{icon} {volume}%  {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "network": {
+        "format-wifi": "   {ipaddr}",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Desconectado ⚠",
+    },
+    "cpu": {
+        "format": "  {usage}%",
+        "tooltip": true
+    },
+    "memory": {
+        "format": "  {}%",
+        "tooltip": true
+    },
+    "temperature": {
+        "interval": 10,
+        "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input",
+        "critical-threshold": 100,
+        "format-critical": " {temperatureC}",
+        "format": " {temperatureC}°C"
+    },
+    "hyprland/language": {
+       "format": "  {}",
+       "format-en": "EN",
+       "format-ru": "RU"
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}  {capacity}%",
+        "format-full": "{icon}  {capacity}%",
+        "format-charging": "  {capacity}%",
+        "format-plugged": "  {capacity}%",
+        "format-alt": "{time}  {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "clock": {
+        "locale": "es_ES.UTF-8",
+        "format": "{:L%H:%M %a %e %B }",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    },
+    "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "",
+        "balanced": "",
+        "power-saver": ""
+      }
+    },
+    "disk": {
+        "interval": 30,
+        "format": "󰋊 {percentage_used}%",
+        "path": "/",
+        "tooltip-format": "{used} usados de {total} en {path}"
+    },
+    "backlight": {
+        "device": "amdgpu_bl2",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-click": "brightnessctl set 10%+",
+        "on-click-right": "brightnessctl set 10%-",
+        "on-scroll-up": "brightnessctl set 1%+",
+        "on-scroll-down": "brightnessctl set 1%-",
+        "interval": 2
+    },
+    "custom/kbd_backlight": {
+        "exec": "brightnessctl -d 'asus::kbd_backlight' g",
+        "exec-if": "test -d /sys/class/leds/asus::kbd_backlight",
+        "interval": 1,
+        "format": "", 
+        "on-click": "brightnessctl -d 'asus::kbd_backlight' set 1+",
+        "on-click-right": "brightnessctl -d 'asus::kbd_backlight' set 1-",
+        "tooltip": false
+    }
+}
